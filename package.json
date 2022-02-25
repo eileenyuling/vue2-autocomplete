@@ -1,8 +1,8 @@
 {
   "name": "vue2-el-autocomplete",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "private": false,
-  "main": "./src/index.js",
+  "main": "./lib/vue2-el-autocomplete.umd.min.js",
   "lib": "./lib",
   "scripts": {
     "serve": "vue-cli-service serve",

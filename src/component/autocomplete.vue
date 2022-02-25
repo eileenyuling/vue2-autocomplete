@@ -68,7 +68,6 @@ import Migrating from 'element-ui/src/mixins/migrating'
 import { generateId } from 'element-ui/src/utils/util'
 import Focus from 'element-ui/src/mixins/focus'
 import _ from 'lodash'
-import './style.css'
 
 export default {
   name: 'TxAutocomplete',
