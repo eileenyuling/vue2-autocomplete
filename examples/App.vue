@@ -1,17 +1,16 @@
 <template>
   <div>
-    <Autocomplete
+    <tx-autocomplete
       v-model="state"
       :fetch-suggestions="querySearchAsync"
       placeholder="请输入内容"
       :defaultValue="defaultValue"
       :defaultSuggestions="defaultSuggestions"
       @select="handleSelect"
-    ></Autocomplete>
+    ></tx-autocomplete>
   </div>
 </template>
 <script>
-import Autocomplete from './autocomplete'
 export default {
   data() {
     return {
@@ -23,9 +22,6 @@ export default {
         "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号"
       }]
     };
-  },
-  components: {
-    Autocomplete
   },
   methods: {
     loadAll() {

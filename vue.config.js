@@ -1,23 +1,16 @@
 const path = require('path')
-// const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
+  outputDir: 'lib',
+  publicPath: './',
   configureWebpack: {
-    // entry: {
-    entry: path.join(__dirname, "./src/autocomplete/index.js"),
-
-    // },
-    // entry: path.join(__dirname, './src/main.js'),
+    entry: path.join(__dirname, "./src/index.js"),
+    // entry: path.join(__dirname, './examples/main.js'),
     output: {
-      library: `Autocomplete`,
-      filename: "Autocomplete.js",
+      library: 'vue2-el-autocomplete',
+      filename: "autocomplete.js",
       libraryTarget: 'umd'
     },
-    // resolve: {
-    //   alias: {
-    //     'element-ui': path.resolve(__dirname, './node_modules/element-ui/lib')
-    //   }
-    // },
   },
   chainWebpack: config => {
     config.module

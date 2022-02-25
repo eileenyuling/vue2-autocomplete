@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
 /dist
+webpack.config.js
+/lib/favicon.ico
+/lib/index.html
 
 
 # local env files

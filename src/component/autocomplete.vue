@@ -77,7 +77,7 @@ export default {
 
   inheritAttrs: false,
 
-  componentName: 'ElAutocomplete',
+  componentName: 'TxAutocomplete',
 
   components: {
     ElInput,

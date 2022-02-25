@@ -1,22 +1,23 @@
 {
   "name": "vue2-autocomplete",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
-  "main": "./dist/Autocomplete.js",
+  "main": "./lib/autocomplete.js",
+  "lib": "./lib",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "^3.21.1",
     "element-ui": "^2.15.6",
-    "vue": "2"
+    "vue": "^2.6.14"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.13",
-    "@vue/cli-service": "~4.5.13",
+    "@vue/cli-service": "^4.5.15",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.6.0",
