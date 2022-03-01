@@ -1,4 +1,6 @@
 const path = require('path')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 module.exports = {
   outputDir: 'lib',
@@ -11,6 +13,10 @@ module.exports = {
       filename: "autocomplete.js",
       libraryTarget: 'umd'
     },
+    plugins: [
+      new BundleAnalyzerPlugin(),
+      new LodashModuleReplacementPlugin()
+    ]
   },
   chainWebpack: config => {
     config.module

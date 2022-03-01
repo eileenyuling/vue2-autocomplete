@@ -55,6 +55,7 @@
           {{ item[valueKey] }}
         </slot>
       </li>
+      <slot v-if="showNodata" name="noData"></slot>
     </el-autocomplete-suggestions>
   </div>
 </template>
@@ -67,7 +68,7 @@ import Emitter from 'element-ui/src/mixins/emitter'
 import Migrating from 'element-ui/src/mixins/migrating'
 import { generateId } from 'element-ui/src/utils/util'
 import Focus from 'element-ui/src/mixins/focus'
-import _ from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
 
 export default {
   name: 'TxAutocomplete',
@@ -143,7 +144,8 @@ export default {
       default: () => {
         return []
       }
-    }
+    },
+    showEmptyContent: Function
   },
   data() {
     return {
@@ -151,7 +153,8 @@ export default {
       suggestions: [],
       loading: false,
       highlightedIndex: -1,
-      suggestionDisabled: false
+      suggestionDisabled: false,
+      showNodata: false
     }
   },
   computed: {
@@ -210,6 +213,7 @@ export default {
         if (Array.isArray(suggestions)) {
           this.isEmpty = !suggestions.length
           this.suggestions = suggestions
+          this.showNodata = this.showEmptyContent ? this.showEmptyContent(this) : false
           this.highlightedIndex = this.highlightFirstItem ? 0 : -1
         } else {
           console.error('[Element Error][Autocomplete]autocomplete suggestions must be an array')
@@ -217,6 +221,7 @@ export default {
       })
     },
     handleInput(value) {
+      this.inputValue = value
       this.$emit('input', value)
       this.suggestionDisabled = false
       if (!this.triggerOnFocus && !value) {
@@ -244,9 +249,9 @@ export default {
       setTimeout(() => {
         if (!this.selected) { // 如果没有选择任何选项，则恢复上一次的选项
           this.$emit('input', this.lastSelectedValue)
-          this.suggestions = _.cloneDeep(this.lastSuggestions)
+          this.lastSuggestions && (this.suggestions = cloneDeep(this.lastSuggestions))
         }
-      }, 100)
+      }, 300)
       this.$emit('blur', event)
     },
     handleClear() {
@@ -270,15 +275,15 @@ export default {
     },
     select(item) {
       this.selected = true
-      this.lastSelectedValue = item[this.valueKey]
-      this.lastSuggestions = _.cloneDeep(this.suggestions)
-      this.isEmpty = false
       this.$emit('input', item[this.valueKey])
       this.$emit('select', item)
       this.$nextTick(() => {
         this.suggestions = []
         this.highlightedIndex = -1
       })
+      this.lastSelectedValue = item[this.valueKey]
+      this.lastSuggestions = cloneDeep(this.suggestions)
+      this.isEmpty = false
     },
     highlight(index) {
       if (!this.suggestionVisible || this.loading) { return }
@@ -310,8 +315,8 @@ export default {
       return this.$refs.input.getInput()
     },
     setDefaultValue(defaultValue, defaultSuggestions) {
-      this.lastSuggestions = defaultSuggestions
       this.$emit('input', defaultValue)
+      this.lastSuggestions = defaultSuggestions
       this.lastSelectedValue = defaultValue
     }
   }
