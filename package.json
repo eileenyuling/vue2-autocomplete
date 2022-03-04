@@ -1,6 +1,6 @@
 {
   "name": "vue2-el-autocomplete",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "main": "./lib/vue2-el-autocomplete.umd.min.js",
   "lib": "./lib",
