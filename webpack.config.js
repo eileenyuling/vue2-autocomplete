@@ -1,5 +1,5 @@
 const path = require('path')
-const { VueLoaderPlugin } = require('vue-loader')
+// const { VueLoaderPlugin } = require('vue-loader')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
@@ -42,7 +42,6 @@ module.exports = {
       ]
     },
     plugins: [
-      new VueLoaderPlugin(),
       new BundleAnalyzerPlugin()
     ]
 }
